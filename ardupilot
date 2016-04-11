@@ -15,7 +15,7 @@ STARTCMD="ArduPlane -C /dev/ttyAMA0"
 PIDFILE=/var/run/arduplane.pid
 
 start(){
-        if [ -f /var/run/$PIDFILE ] && kill -0 $(cat /var/run/$PIDFILE); then
+        if [ -f $PIDFILE ] && kill -0 $(cat $PIDFILE); then
                 echo 'Service already running' >&2
                 return 1
         fi
@@ -26,7 +26,7 @@ start(){
 }
 
 stop(){
-	if [ ! -f /var/run/$PIDFILE ] || ! kill -0 $(cat /var/run/$PIDFILE); then
+	if [ ! -f $PIDFILE ] || ! kill -0 $(cat $PIDFILE); then
                 echo 'Service not running' >&2
                 return 1
         fi
